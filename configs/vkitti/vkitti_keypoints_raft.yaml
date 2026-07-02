@@ -1,0 +1,159 @@
+DEBUG:
+  PRINT_TO_FILE: false
+  DEBUG: false
+  SAVE_HEATMAPS_GT: false
+  SAVE_HEATMAPS_PRED: false
+  LOG_VAL_LOSS: false
+  VISUALIZATION_JUMP_NUM: -1
+  WANDB_KEY: ''
+  WANDB_NAME: ''
+CUDNN:
+  BENCHMARK: true
+  DETERMINISTIC: false
+  ENABLED: true
+TRANSFORMER: dq_transformer
+BACKBONE_MODEL: pose_resnet
+MODEL: multi_person_posenet
+DATA_DIR: ''
+GPUS: 1,2,3
+OUTPUT_DIR: output
+LOG_DIR: log
+WORKERS: 0
+PRINT_FREQ: 100
+DATASET:
+  COLOR_RGB: true
+  TRAIN_DATASET: vkitti_keypoints_raft
+  TEST_DATASET: vkitti_keypoints_raft
+  DATA_FORMAT: jpg
+  DATA_AUGMENTATION: false
+  FLIP: false
+  ROOT: /home/users/multicog/saksham_1/new_proj/data/Vkitti
+  ROT_FACTOR: 0
+  SCALE_FACTOR: 0.0
+  TEST_SUBSET: validation
+  TRAIN_SUBSET: train
+  ROOTIDX:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  CAMERA_NUM: 2
+  SUBSET_SELECTION: all
+  FILTER_VALID_OBSERVATIONS: false
+  NMS_DETAIL: false
+  MAX_DATA_NUM: 0
+NETWORK:
+  PRETRAINED_BACKBONE: ''
+  PRETRAINED: ''
+  TARGET_TYPE: gaussian
+  IMAGE_SIZE:
+  - 1242
+  - 375
+  HEATMAP_SIZE:
+  - 310
+  - 94
+  SIGMA: 3
+  NUM_JOINTS: 24
+  USE_GT: false
+LOSS:
+  USE_TARGET_WEIGHT: true
+TRAIN:
+  BATCH_SIZE: 1
+  SHUFFLE: true
+  BEGIN_EPOCH: 0
+  END_EPOCH: 1
+  RESUME: false
+  OPTIMIZER: adam
+  LR: 0.0004
+  FINETUNE_MODEL: null
+TEST:
+  MODEL_FILE: ''
+  BATCH_SIZE: 1
+MULTI_PERSON:
+  SPACE_SIZE:
+  - 80000.0
+  - 20000.0
+  - 80000.0
+  SPACE_CENTER:
+  - 0.0
+  - 0.0
+  - 20000.0
+  MAX_PEOPLE_NUM: 64
+  THRESHOLD: 0.1
+DECODER:
+  t_pose_dir: ./data/vkitti/car_tpose_24.pt
+  d_model: 256
+  nhead: 8
+  dim_feedforward: 1024
+  dropout: 0.1
+  activation: relu
+  num_feature_levels: 1
+  num_decoder_layers: 1
+  return_intermediate_dec: true
+  num_keypoints: 24
+  with_pose_refine: true
+  aux_loss: false
+  lr_linear_proj_mult: 0.1
+  loss_pose_normalize: false
+  loss_joint_type: l1
+  pred_class_fuse: mean
+  pred_conf_threshold: 0.5
+  match_coord_est: abs
+  match_coord_gt: norm
+  detach_refpoints_cameraprj_firstlayer: true
+  fuse_view_feats: cat_proj
+  epipolar_encoder: false
+  optimizer: adamw
+  projattn_posembed_mode: ablation_not_use_rayconv
+  use_feat_level:
+  - 0
+  - 1
+  - 2
+  init_ref_method: sample_space
+  query_embed_type: person_joint
+  loss_pose_perprojection_2d: 5.0
+  loss_pose_perjoint: 5.0
+  loss_weight_loss_ce: 0.0
+  feature_update_method: MLP
+  init_self_attention: false
+  open_forward_ffn: true
+  query_filter_method: threshold
+  init_ref_method_value: 0
+  num_instance: 128
+  gt_match: false
+  close_pose_embedding: false
+  share_layer_weights: false
+  dec_n_points: 8
+  bayesian_update: false
+  triangulation_method: linalg
+  decay_method: none
+  match_method: KNN
+  match_method_value: 5
+  use_ce_match: false
+  filter_query: true
+  inference_conf_thr:
+  - 0.0
+  loss_weight_init: 0.0
+  lr_decay_epoch: 1
+  pose_embed_layer: 3
+  num_views: 2
